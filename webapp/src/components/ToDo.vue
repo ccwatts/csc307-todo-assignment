@@ -1,7 +1,7 @@
 <template>
   <div class="todo">
     <b-checkbox v-model="todo.done" v-on:input="onToggle" />
-    <b-button type="is-danger" size="is-small" outlined>Delete</b-button>
+    <b-button type="is-danger" size="is-small" outlined v-on:click="onDeletePress">Delete</b-button>
     <span class="todo-title">
       {{ todo.title }}
     </span>
@@ -21,7 +21,11 @@ export default {
   },
   methods: {
     onToggle(checked) {
-      this.$store.dispatch('toggleToDo', this.todo.id, checked);
+      //this.$store.dispatch('toggleToDo', this.todo.id, checked);
+      this.$store.dispatch('persistState');
+    },
+    onDeletePress() {
+      this.$store.dispatch('deleteToDo', this.todo);
     }
   }
 };

@@ -29,12 +29,11 @@ export default new Vuex.Store({
     addToDo(state, todo) {
       state.todos = [...state.todos, {...todo, done: false, id: state.todos.length+1}];
     },
-    toggleToDo(state, id, done) {
-      for (var i = 0; i < state.todos.length; ++i) {
-        if (state.todos[i].id == id) {
-          state.todos[i].done = done;
-        }
-      }
+    persistState(state) {
+      state.todos = state.todos.map(t => t);
+    },
+    deleteToDo(state, todo) {
+      state.todos = state.todos.filter(t => t !== todo);
     }
   },
   actions: {
@@ -42,10 +41,13 @@ export default new Vuex.Store({
       debugger;
       commit("addToDo", toDo);
     },
-    toggleToDo({ commit }, id, done) {
+    persistState({ commit }) {
       debugger;
-      console.log(id);
-      commit("toggleToDo", id, done);
+      commit("persistState");
+    },
+    deleteToDo({ commit }, toDo) {
+      debugger;
+      commit("deleteToDo", toDo);
     }
   }
 });
