@@ -1,6 +1,7 @@
 <template>
   <div class="todo">
-    <b-checkbox v-model="todo.done" />
+    <b-checkbox v-model="todo.done" v-on:input="onToggle" />
+    <b-button type="is-danger" size="is-small" outlined>Delete</b-button>
     <span class="todo-title">
       {{ todo.title }}
     </span>
@@ -16,6 +17,11 @@ export default {
       default: () => {
         return {};
       }
+    }
+  },
+  methods: {
+    onToggle(checked) {
+      this.$store.dispatch('toggleToDo', this.todo.id, checked);
     }
   }
 };
