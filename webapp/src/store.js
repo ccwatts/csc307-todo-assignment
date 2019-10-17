@@ -36,6 +36,7 @@ export default new Vuex.Store({
       state.todos = state.todos.map(t => t);
     },
     deleteToDo(state, todo) {
+      // just filters out the one that we're deleting; not so much a delete as a "take everything BUT..."
       state.todos = state.todos.filter(t => t !== todo);
     }
   },
