@@ -30,6 +30,9 @@ export default new Vuex.Store({
       state.todos = [...state.todos, {...todo, done: false, id: state.todos.length+1}];
     },
     persistState(state) {
+      // creates a deep copy of the state.todos, then reassigns it
+      // in principle, this works since the checkbox apparently reflects in the todos, but isn't detected as changed
+      // who knows, really
       state.todos = state.todos.map(t => t);
     },
     deleteToDo(state, todo) {

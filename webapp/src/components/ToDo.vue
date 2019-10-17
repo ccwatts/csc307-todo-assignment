@@ -21,7 +21,8 @@ export default {
   },
   methods: {
     onToggle(checked) {
-      //this.$store.dispatch('toggleToDo', this.todo.id, checked);
+      // persistState should be enough; toggleToDo no longer exists, so be careful if this is uncommented
+      // this.$store.dispatch('toggleToDo', this.todo.id, checked);
       this.$store.dispatch('persistState');
     },
     onDeletePress() {
